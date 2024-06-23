@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.purple{
+  color: #6164FF;
+}
+.bgpurple{
+  background-color: #6164FF;
+}
+
+.background{
+  background: #18171C;
+}

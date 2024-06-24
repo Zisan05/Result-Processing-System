@@ -3,8 +3,12 @@ import { IoIosArrowForward } from "react-icons/io";
 import { PiStudentFill } from "react-icons/pi";
 import { BiSolidBookOpen } from "react-icons/bi";
 import { Outlet } from "react-router-dom";
+import { BiTask } from "react-icons/bi";
+import { HiMiniAcademicCap } from "react-icons/hi2";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropupCircle } from "react-icons/io";
+import { PiExamFill } from "react-icons/pi";
+import { SlCalender } from "react-icons/sl";
 import { useState } from "react";
 
 const DashBoard = () => {
@@ -41,7 +45,7 @@ const [Result , setResult] = useState(false);
 
 
                     <div onClick={() => setIsSemester(!isSemester)} className="flex items-center gap-[10px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <PiStudentFill  className="text-[35px]"></PiStudentFill >
+                    <HiMiniAcademicCap  className="text-[35px]"></HiMiniAcademicCap>
                     <h1 className="text-[25px]">Semester</h1>
 
                     {
@@ -94,7 +98,7 @@ const [Result , setResult] = useState(false);
 
             
                     <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <PiStudentFill  className="text-[35px]"></PiStudentFill >
+                    <BiTask  className="text-[35px]"></BiTask>
                     <h1 className="text-[25px]">Exam</h1>
 
                     <IoIosArrowForward className="text-[25px] ml-[55px]"></IoIosArrowForward>
@@ -102,7 +106,7 @@ const [Result , setResult] = useState(false);
 
 
                     <div onClick={() => setResult(!Result)} className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <BiSolidBookOpen  className="text-[35px]"></BiSolidBookOpen>
+                    <PiExamFill  className="text-[35px]"></PiExamFill>
                     <h1 className="text-[25px]">Result</h1>
 
                     {
@@ -129,7 +133,7 @@ const [Result , setResult] = useState(false);
                     }
 
                     <div className="flex items-center gap-[10px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <PiStudentFill  className="text-[35px]"></PiStudentFill >
+                    <SlCalender className="text-[35px]"></SlCalender>
                     <h1 className="text-[25px]">Calendar</h1>
 
                     <IoIosArrowForward className="text-[25px] ml-[30px]"></IoIosArrowForward>

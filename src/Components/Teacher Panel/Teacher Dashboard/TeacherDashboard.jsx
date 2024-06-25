@@ -2,7 +2,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { PiStudentFill } from "react-icons/pi";
 import { BiSolidBookOpen } from "react-icons/bi";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { HiMiniAcademicCap } from "react-icons/hi2";
 import { BiTask } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
@@ -25,10 +25,12 @@ const TeacherDashboard = () => {
 
 <p className="border-t-2 w-[220px] ml-[20px] mt-[10px]"></p>
 
+                <Link to={"/teacher"}>
                 <div className="flex items-center gap-[10px] pl-[20px] pt-[20px]">
                     <MdDashboardCustomize className="text-[35px]"></MdDashboardCustomize>
                     <h1 className="text-[25px] focus:border-b-4" tabIndex="0">Dashboard</h1>
                 </div>
+                </Link>
 
                 <div>
                     <h1 className="text-[20px] pl-[40px] mt-[20px]  opacity-40">APPEARANCE</h1>
@@ -69,14 +71,16 @@ const TeacherDashboard = () => {
                     </div>
 
                  
+                  <Link to={"/teacher/tcalendar"}>
 
-
-                    <div className="flex items-center gap-[10px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
+                  <div className="flex items-center gap-[10px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
                     <SlCalender className="text-[35px]"></SlCalender>
                     <h1 className="text-[25px]">Calendar</h1>
 
                     <IoIosArrowForward className="text-[25px] ml-[55px]"></IoIosArrowForward>
                     </div>
+                  
+                  </Link>
 
                 </div>
 

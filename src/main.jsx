@@ -14,6 +14,7 @@ import TeacherDashboard from './Components/Teacher Panel/Teacher Dashboard/Teach
 import TeacherHome from './Components/Teacher Panel/TeacherHome/TeacherHome';
 import StudentCalendar from './Components/StudentCalendar/StudentCalendar';
 import TeacherCalendar from './Components/TeacherCalendar/TeacherCalendar';
+import StudentSemester from './Components/StudentSemester/StudentSemester';
 
 const router = createBrowserRouter([
   {
@@ -35,9 +36,15 @@ const router = createBrowserRouter([
           path: '/dashboard',
           element: <DashboardPage></DashboardPage>
         },
+
         {
           path: "/dashboard/scalendar",
           element : <StudentCalendar></StudentCalendar>
+        },
+
+        {
+          path : "/dashboard/semester/:id",
+          element : <StudentSemester></StudentSemester>
         }
       ]
     },

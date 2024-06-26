@@ -9,12 +9,66 @@ import { MdArrowDropDownCircle } from "react-icons/md";
 import { IoMdArrowDropupCircle } from "react-icons/io";
 import { PiExamFill } from "react-icons/pi";
 import { SlCalender } from "react-icons/sl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const DashBoard = () => {
 
 const [isSemester , setIsSemester] = useState(false);
 const [Result , setResult] = useState(false);
+
+
+// semester login work
+const Atoken = localStorage.getItem('Access token');
+const Rtoken = localStorage.getItem('Refresh token');
+
+const token = {Access : Atoken,refresh : Rtoken};
+
+const [semesterInfo, setSemesterInfo] = useState([]);
+
+
+useEffect( () => {
+    fetch(`https://sabihaakterbristy.pythonanywhere.com/user/token/refresh/`,{
+      method:"POST",
+      credentials: "include",
+      headers: {
+          "content-type":"application/json",
+          
+      },
+      body:  JSON.stringify(token) ,
+      
+  })
+  .then(res => res.json())
+  .then(data => {
+  
+ 
+  
+    const newTok =data.access;
+  
+   
+  
+    fetch(`https://sabihaakterbristy.pythonanywhere.com/user/semester/`,{
+      method:"GET",
+      credentials: "include",
+      headers: {
+          "content-type":"application/json",
+          "Authorization": `Bearer ${newTok}`,
+      },
+      
+  })
+  .then(res => res.json())
+  .then(data => {
+  
+    
+
+    setSemesterInfo(data);
+    
+  })
+  
+  })
+  },[setSemesterInfo]);
+
+
+
 
 
     return (
@@ -61,37 +115,15 @@ const [Result , setResult] = useState(false);
                     {
                         isSemester === true ? <div>
 
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[30px]">Semester 1</h1>
-    
-                        <IoIosArrowForward className="text-[25px] ml-[40px]"></IoIosArrowForward>
-                        </div>
-    
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[30px]">Semester 2</h1>
-    
-                        <IoIosArrowForward className="text-[25px] ml-[40px]"></IoIosArrowForward>
-                        </div>
-    
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[30px]">Semester 3</h1>
-    
-                        <IoIosArrowForward className="text-[25px] ml-[40px]"></IoIosArrowForward>
-                        </div>
-    
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[30px]">Semester 4</h1>
-    
-                        <IoIosArrowForward className="text-[25px] ml-[40px]"></IoIosArrowForward>
-                        </div>
-    
-    
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[30px]">Semester 5</h1>
-    
-                        <IoIosArrowForward className="text-[25px] ml-[40px]"></IoIosArrowForward>
-                        </div>
-    
+                            {
+                                semesterInfo.map(item => (<Link to={`/dashboard/semester/${item.id}`}>
+                                <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
+                                <h1 className="text-[25px] ml-[30px]">Semester {item.semester_no}</h1>
+            
+                                <IoIosArrowForward className="text-[25px] ml-[40px]"></IoIosArrowForward>
+                                </div>
+                                </Link>))
+                            }
     
                         </div>  : ""
                     }

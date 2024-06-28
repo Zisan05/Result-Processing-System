@@ -15,6 +15,7 @@ import TeacherHome from './Components/Teacher Panel/TeacherHome/TeacherHome';
 import StudentCalendar from './Components/StudentCalendar/StudentCalendar';
 import TeacherCalendar from './Components/TeacherCalendar/TeacherCalendar';
 import StudentSemester from './Components/StudentSemester/StudentSemester';
+import GPA from './Components/GPA/GPA';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
         {
           path : "/dashboard/semester/:id",
           element : <StudentSemester></StudentSemester>
+        },
+
+        {
+          path : "/dashboard/gpa",
+          element : <GPA></GPA>
         }
       ]
     },

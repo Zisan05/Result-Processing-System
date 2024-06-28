@@ -131,40 +131,24 @@ useEffect( () => {
 
 
             
-                    <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
+                    {/* <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
                     <BiTask  className="text-[35px]"></BiTask>
                     <h1 className="text-[25px]">Exam</h1>
 
                     <IoIosArrowForward className="text-[25px] ml-[55px]"></IoIosArrowForward>
-                    </div>
+                    </div> */}
 
 
-                    <div onClick={() => setResult(!Result)} className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <PiExamFill  className="text-[35px]"></PiExamFill>
-                    <h1 className="text-[25px]">Result</h1>
+                      <Link to={"/dashboard/gpa"}>
+                       <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
 
-                    {
-                        Result === false ?  <MdArrowDropDownCircle className="text-[25px] ml-[45px] mt-[5px]"></MdArrowDropDownCircle> :  <IoMdArrowDropupCircle className="text-[25px] ml-[45px] mt-[5px]"></IoMdArrowDropupCircle>
-                    }
-                    </div>
-
-                    {
-                        Result === true ? <div>
-
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[60px]">GPA</h1>
+                         <PiStudentFill className="text-[35px]"></PiStudentFill>  
+                        <h1 className="text-[25px] ml-[20px]">Result</h1>
     
-                        <IoIosArrowForward className="text-[25px] ml-[80px]"></IoIosArrowForward>
+                        <IoIosArrowForward className="text-[25px] ml-[60px]"></IoIosArrowForward>
                         </div>
-    
-                        <div className="flex items-center  pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                        <h1 className="text-[25px] ml-[60px]">CGPA</h1>
-    
-                        <IoIosArrowForward className="text-[25px] ml-[65px]"></IoIosArrowForward>
-                        </div>
-
-                        </div> : ""
-                    }
+                       </Link>
+                    
 
                     <Link to={"/dashboard/scalendar"}>
                     <div className="flex items-center gap-[10px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">

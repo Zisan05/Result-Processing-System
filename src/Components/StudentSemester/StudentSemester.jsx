@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PiExamFill } from "react-icons/pi";
 import { CiMenuKebab } from "react-icons/ci";
+
+
 
 
 const StudentSemester = () => {
@@ -110,7 +112,7 @@ useEffect( () => {
   .then(res => res.json())
   .then(data => {
   
-   
+ 
 
     setExamData(data);
 
@@ -160,6 +162,8 @@ const handleExamDetails = (_id) => {
   })
   .then(res => res.json())
   .then(data => {
+
+   console.log(data);
   
    setExamDetails(data);
 
@@ -170,9 +174,107 @@ const handleExamDetails = (_id) => {
     
 }
 
-console.log(ExamDetails);
+// console.log(ExamDetails);
 
-const {name,course,deadline,question} = ExamDetails;
+const {name,course,deadline,question,exam_id} = ExamDetails;
+
+
+
+
+// Answer submit part done
+
+
+const inputRef = useRef(null);
+    
+
+const [image,setImage] = useState('');
+
+const [sendPhoto,setSendPhoto] = useState("");
+
+
+
+
+
+const handleChangeImage = (e) => {
+  const file = e.target.files[0];
+  if (!file) {
+    console.error('No file selected');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('image', file);
+  console.log(formData);
+
+  fetch(`https://api.imgbb.com/1/upload?key=c8127e168c8790e95ea23c526262f45d`, {
+    method: 'POST',
+
+ 
+    body: formData
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      
+      console.log(formData);
+    })
+    .catch(error => {
+      console.error('Error uploading image:', error);
+    });
+};
+
+
+const handleSubmitAnswer = e => {
+
+  e.preventDefault();
+        
+
+  const answerInfo = { examination : exam_id , answer}
+
+  console.log(answerInfo);
+
+  fetch(`https://sabihaakterbristy.pythonanywhere.com/user/token/refresh/`,{
+    method:"POST",
+    credentials: "include",
+    headers: {
+        "content-type":"application/json",
+        
+    },
+    body:  JSON.stringify(token) ,
+    
+})
+.then(res => res.json())
+.then(data => {
+
+
+
+  const newTok =data.access;
+
+  fetch('https://sabihaakterbristy.pythonanywhere.com/user/answer-submit/',{
+    method:"POST",
+    credentials: "include",
+    headers: {
+        "content-type":"application/json",
+        "Authorization": `Bearer ${newTok}`,
+    },
+    body: JSON.stringify(answerInfo)
+})
+.then(res => res.json())
+.then(data => {
+
+  console.log(data);
+
+})
+
+})  
+
+
+
+
+
+}
+
+
 
 
     return (
@@ -212,7 +314,15 @@ const {name,course,deadline,question} = ExamDetails;
     <h3 className="font-bold text-[20px] text-center mt-[10px]">Course Name : <span className="purple">{course}</span></h3>
     <h3 className="font-bold text-[20px] text-center mt-[10px]">Deadline : <span className="purple">{deadline}</span></h3>
 
-    <a href={question}><img className="h-[300px] w-full" src={question} alt="" /></a>
+    <a href={question}><h1 className="font-bold text-[20px] text-center mt-[10px]">Question PDF : <span className="purple">{question}</span></h1></a>
+
+    <form onSubmit={handleSubmitAnswer}>
+      <h1 className="text-[20px] font-bold mt-[10px]">Your answer</h1>
+
+      <input className="bg-slate-200 w-full py-[5px]" ref={inputRef} onChange={handleChangeImage} type="file" name="answer" id="answer" />
+
+      <button className="bgpurple px-[10px] py-[8px] rounded-[5px] mt-[10px] text-white font-semibold relative left-[390px]">Submit</button>
+    </form>
     
   </div>
 </dialog>

@@ -38,7 +38,8 @@ const handleForStudent = e => {
 
   console.log(signInInfo);
 
-  fetch('https://sabihaakterbristy.pythonanywhere.com/user/token/',{
+  
+fetch('https://sabihaakterbristy.pythonanywhere.com/user/token/',{
     method:"POST",
     headers: {
         "content-type":"application/json"
@@ -66,7 +67,6 @@ e.target.reset();
 navigate(location?.state ? location.state : "/dashboard");
 
 
-
 }
 
 else {
@@ -79,6 +79,69 @@ e.target.reset();
    
 })
 
+
+}
+
+
+// for Teacher login 
+
+
+const handleTeacherLogin = e => {
+
+  e.preventDefault();
+        
+  const username = e.target.username.value;
+  const password = e.target.password.value;
+
+
+
+  const signInInfo = {username,password};
+
+
+  fetch('https://sabihaakterbristy.pythonanywhere.com/user/token/',{
+    method:"POST",
+    headers: {
+        "content-type":"application/json"
+    },
+    body: JSON.stringify(signInInfo)
+})
+.then(res => res.json())
+.then(data => {
+   
+ console.log(data);
+    localStorage.setItem('Access token', data.access);
+    localStorage.setItem('Refresh token', data.refresh);
+
+if(data.access){
+
+Swal.fire({
+  title: "Successfull",
+  text: "You successully enter our website",
+  icon: "success",
+  
+});
+
+e.target.reset();
+
+navigate(location?.state ? location.state : "/teacher");
+
+
+}
+
+else {
+
+  Swal.fire({
+    title: "Error",
+    text: "Please enter the correct information !",
+    icon: "error",
+    
+  });
+
+e.target.reset();
+
+}
+   
+})
 
 }
 
@@ -132,17 +195,17 @@ e.target.reset();
                  <h1 className="text-[25px] font-medium text-center underline ">For Teacher</h1>
                  <h1 className="text-[22px] pl-[20px] font-medium mt-[20px]"><span className="purple">Result</span> Processing System</h1>
 
-                 <form  className="mt-[30px] pl-[20px] pb-[20px]">
+                 <form onSubmit={handleTeacherLogin}  className="mt-[30px] pl-[20px] pb-[20px]">
 
 
                     <div className="flex gap-[10px]">
                     <h1 className="text-[20px] text-black font-bold">User Name</h1>
-                 <input type="text" className="bg-slate-200 md: lg:w-[400px] rounded-[5px] pl-[10px] py-[5px]" placeholder="User Name" />
+                 <input type="text" className="bg-slate-200 md: lg:w-[400px] rounded-[5px] pl-[10px] py-[5px]" name="username" placeholder="User Name" />
                     </div>
 
                     <div className="flex gap-[25px] mt-[20px] ">
                     <h1 className="text-[20px] text-black font-bold">Password</h1>
-                 <input type={seen} className="bg-slate-200 md: lg:w-[400px] rounded-[5px] pl-[10px] py-[5px]" placeholder="Password" />
+                 <input type={seen} name="password" className="bg-slate-200 md: lg:w-[400px] rounded-[5px] pl-[10px] py-[5px]" placeholder="Password" />
 
                  {
                   seen === "text" ?

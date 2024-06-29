@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 const DashBoard = () => {
 
 const [isSemester , setIsSemester] = useState(false);
-const [Result , setResult] = useState(false);
+
 
 
 // semester login work
@@ -131,12 +131,7 @@ useEffect( () => {
 
 
             
-                    {/* <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <BiTask  className="text-[35px]"></BiTask>
-                    <h1 className="text-[25px]">Exam</h1>
-
-                    <IoIosArrowForward className="text-[25px] ml-[55px]"></IoIosArrowForward>
-                    </div> */}
+              
 
 
                       <Link to={"/dashboard/gpa"}>

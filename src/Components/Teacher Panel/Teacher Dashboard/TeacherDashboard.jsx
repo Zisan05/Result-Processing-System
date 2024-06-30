@@ -75,7 +75,7 @@ useEffect( () => {
            <div className="flex flex-col md:flex-row gap-[10px]">
          
          {/* dashboard part */}
-           <div className="bg-slate-800 text-white w-full md:w-[300px] pb-[50px]">
+           <div className="bg-slate-800 text-white w-full md:w-[300px] pb-[50px] h-[800px] overflow-y-auto">
   
            <h1 className="text-[20px] pl-[40px] mt-[20px]  opacity-40">MAIN CATEGORY</h1>
 

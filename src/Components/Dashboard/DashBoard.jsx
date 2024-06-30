@@ -73,7 +73,7 @@ useEffect( () => {
 
     return (
         <div>
-            <div className="bgpurple py-[10px]">
+            <div className="bgpurple py-[10px] md:w-[767px] lg:w-[1680px]">
                 <h1 className="text-[25px] pl-[30px] text-white font-semibold" >Result Processing System | Student</h1>
             </div>
 
@@ -81,7 +81,7 @@ useEffect( () => {
            <div className="flex flex-col md:flex-row gap-[10px]">
          
          {/* dashboard part */}
-           <div className="bg-slate-800 text-white w-full md:w-[300px] pb-[50px]">
+           <div className="bg-slate-800 text-white overflow-y-auto h-[700px] w-full md:w-[300px] pb-[50px]">
   
            <h1 className="text-[20px] pl-[40px] mt-[20px]  opacity-40">MAIN CATEGORY</h1>
 

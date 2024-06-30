@@ -278,7 +278,7 @@ const handleSubmitAnswer = e => {
 
 
     return (
-        <div>
+        <div className="h-[700px] overflow-y-auto md:w-[500px] lg:w-[1370px] ">
             <div className=" mt-[40px] text-white md:w-[500px] lg:w-[1000px] lg:ml-[150px] h-[220px] md:h-[250px] lg:h-[300px] bg-[url('https://i.ibb.co/f00nGz0/concept-word-semester-on-cubes-260nw-1648309444.jpg')] bg-cover bg-center mb-[30px]">
                 <h1 className="text-[35px] font-semibold pl-[30px]">Semester {semester_no}</h1>
                 <h1 className="text-[35px] font-semibold pl-[30px] mb-[20px]">Department : {department}</h1>
@@ -298,7 +298,9 @@ const handleSubmitAnswer = e => {
                      <h1 className="text-[14px] md:text-[16px] lg:text-[25px] font-semibold">{data.name} Examination : <span className="purple">{data.course}</span>  ;</h1>
                      <h1 className="text-[14px] md:text-[16px] lg:text-[25px] font-semibold">Deadline : <span className="purple">{data.deadline}</span></h1>
      
-                     <CiMenuKebab  onClick={()=>document.getElementById('my_modal_3').showModal()} className=" md:text-[20px] lg:text-[25px] absolute right-[10px] md:right-[0px] lg:right-[250px]"></CiMenuKebab>
+                     <div className=""> 
+                     <CiMenuKebab  onClick={()=>document.getElementById('my_modal_3').showModal()} className=" md:text-[20px] lg:text-[25px] md:ml-[50px]"></CiMenuKebab>
+                     </div>
                     
                  </div>
                 ))

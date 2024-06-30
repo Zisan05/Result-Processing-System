@@ -16,7 +16,7 @@ const onChange = date => {
     return (
         <div>
 
-<div className="bg-slate-600 md:w-[470px] lg:w-[1400px]">
+<div className="bg-slate-600 md:w-[460px] lg:w-[1370px]">
                 <h1 className="text-[35px]  pl-[20px] font-semibold py-[15px] text-white">Calendar</h1>
             </div>
 

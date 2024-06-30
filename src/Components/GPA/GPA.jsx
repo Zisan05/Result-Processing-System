@@ -84,8 +84,8 @@ console.log(courseArray);
 
 
     return (
-        <div>
-            <div className="bg-slate-600 md:w-[500px] lg:w-[1400px]">
+        <div className="h-[700px] overflow-y-auto">
+            <div className="bg-slate-600 md:w-[460px] lg:w-[1355px] ">
             <h1 className="text-[35px] pl-[40px] font-semibold py-[15px] text-white">Result</h1>
             </div>
 

@@ -1,7 +1,7 @@
 
 const DashboardPage = () => {
     return (
-        <div className=" md:w-[500px] lg:w-[1400px] bg-slate-200">
+        <div className=" md:w-[500px] lg:w-[1168px] bg-slate-200">
             <div className="bg-slate-600">
                 <h1 className="text-[35px] pl-[20px] font-semibold py-[15px] text-white">Dashboard</h1>
             </div>

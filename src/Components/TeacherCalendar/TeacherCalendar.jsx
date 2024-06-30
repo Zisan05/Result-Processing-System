@@ -15,11 +15,11 @@ const TeacherCalendar = () => {
     return (
         <div>
 
-<div className="bg-slate-600 md:w-[470px] lg:w-[1000px]">
+<div className="bg-slate-600 md:w-[475px] lg:w-[1370px]">
                 <h1 className="text-[35px]  pl-[20px] font-semibold py-[15px] text-white">Calendar</h1>
             </div>
 
-<div className=" relative md:left-[50px] lg:left-[350px] top-[80px]">
+<div className=" relative md:left-[0px] lg:left-[350px] top-[80px]">
             <Calendar className="text-[20px] " defaultActiveStartDate={new Date} onChange={onChange} value={date} />
         </div>
         </div>

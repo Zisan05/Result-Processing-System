@@ -13,54 +13,9 @@ const Rtoken = localStorage.getItem('Refresh token');
 
 const token = {Access : Atoken,refresh : Rtoken};
 
-const [semesterInfo, setSemesterInfo] = useState([]);
+
 
 const [Id, setId] = useState('')
-
-
-useEffect( () => {
-    fetch(`https://sabihaakterbristy.pythonanywhere.com/user/token/refresh/`,{
-      method:"POST",
-      credentials: "include",
-      headers: {
-          "content-type":"application/json",
-          
-      },
-      body:  JSON.stringify(token) ,
-      
-  })
-  .then(res => res.json())
-  .then(data => {
-  
- 
-  
-    const newTok =data.access;
-  
-   
-  
-    fetch(`https://sabihaakterbristy.pythonanywhere.com/user/semester/`,{
-      method:"GET",
-      credentials: "include",
-      headers: {
-          "content-type":"application/json",
-          "Authorization": `Bearer ${newTok}`,
-      },
-      
-  })
-  .then(res => res.json())
-  .then(data => {
-  
-    
-
-    setSemesterInfo(data);
-    
-  })
-  
-  })
-  },[setSemesterInfo]);
-
-
- 
 
 
 //  Submit imformation for Result 
@@ -79,7 +34,7 @@ const handleShowResult = e => {
     console.log(Id);
 
 
-    fetch(`https://sabihaakterbristy.pythonanywhere.com/user/result/?semester_id=${Id}&registration_no=${regestration}`,{
+    fetch(`https://sabihaakterbristy.pythonanywhere.com/user/result/?semester_no=${Id}&registration_no=${regestration}`,{
       method:"GET",
       headers: {
           "content-type":"application/json",
@@ -99,6 +54,10 @@ const handleShowResult = e => {
     if(data.semester_wise) {
         setCourseMark(data.semester_wise);
     }
+
+    e.target.reset();
+
+    setSeeSemester('')
 
     
     setResultData(data);
@@ -145,7 +104,7 @@ console.log(courseArray);
                  <h1 className="text-[20px] mt-[15px] pl-[30px] text-white font-semibold">Semester</h1>
 
                  <div className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px] mt-[10px] flex items-center justify-between px-[10px] border-2 border-black">
-                    <h1 className="ml-[60px] md:ml-[130px] text-[20px] font-bold">Semester {seeSemester}</h1>
+                    <h1 className="w-full text-[20px] font-bold text-center ml-[20px]">Semester {seeSemester}</h1>
 
                      <IoIosArrowDown onClick={() => setIsSemester(!isSemester)} className="text-[25px]"></IoIosArrowDown>
                  </div>
@@ -153,29 +112,56 @@ console.log(courseArray);
                {
                 isSemester === true ? <div>
                     
-                {
-                   semesterInfo.map(item => (
-
-                       
-
-                      <span onClick={() => setId(item.id)}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester(item.semester_no)} className="w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] hover:bg-indigo-500">
-                      <h1 className=" ml-[60px] text-[20px] font-bold">Semester {item.semester_no} (CSE 2019-2020)</h1>
+                      <span onClick={() => setId("1")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("1")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 1</h1>
                         </div></span></span>
-                      )
 
-                   )
-                }
+                        <span onClick={() => setId("2")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("2")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 2</h1>
+                        </div></span></span>
+
+
+                        <span onClick={() => setId('3')}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("3")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 3</h1>
+                        </div></span></span>
+
+
+                        <span onClick={() => setId("4")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("4")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 4</h1>
+                        </div></span></span>
+
+                        <span onClick={() => setId("5")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("5")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 5</h1>
+                        </div></span></span>
+
+                        <span onClick={() => setId("6")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("6")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 6</h1>
+                        </div></span></span>
+
+                        <span onClick={() => setId("7")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("7")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 7</h1>
+                        </div></span></span>
+
+                        <span onClick={() => setId("8")}><span onClick={() => setIsSemester(false)}> <div onClick={() => setSeeSemester("8")} className="w-[300px] md:w-[400px] bg-slate-200 py-[5px] ml-[30px]  flex items-center justify-between px-[10px] mx-auto hover:bg-indigo-500">
+                      <h1 className="  text-[20px] font-bold w-full text-center ">Semester 8</h1>
+                        </div></span></span>
+                  
+
+                   
+                
                 </div> : ""
                 
 }
 
 {
-    isSemester === true ? <span onClick={() => setId("final")}><span onClick={() => setIsSemester(false)}><div onClick={() => setSeeSemester("final")} className="w-[400px] bg-slate-200 py-[5px] ml-[30px]  px-[10px] hover:bg-indigo-500">
-    <h1 className=" text-center text-[20px] font-bold"> Semester final </h1>
+    isSemester === true ? <span onClick={() => setId("final")}><span onClick={() => setIsSemester(false)}><div onClick={() => setSeeSemester("final")} className="w-[300px] md:w-[400px]  bg-slate-200 py-[5px] ml-[30px]  px-[10px] hover:bg-indigo-500">
+    <h1 className=" text-center text-[20px] font-bold "> Semester final </h1>
       </div></span></span> : ""
 }
 
-<button className="bg-slate-200 text-[20px] px-[20px] py-[5px] mt-[20px] ml-[140px] md:ml-[180px] rounded-[5px] font-semibold hover:bg-slate-300">Enter</button>
+<div className="flex justify-center">
+<button className="bg-slate-200 text-[20px] px-[20px] py-[5px] mt-[20px]  rounded-[5px] font-semibold hover:bg-slate-300">Enter</button>
+</div>
 
           </form>
             </div>
@@ -187,17 +173,17 @@ console.log(courseArray);
     resultData === "" ? "" : <div>
     <h1 className="text-[35px] text-center mt-[20px] font-bold underline">Result Sheet </h1>
 
-    <div className="border-2 border-black md:w-[500px] lg:w-[1000px] mx-auto flex">
+    <div className="border-2 border-black md:w-[500px] lg:w-[1000px] mx-auto flex ">
 
-        <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[500px] pl-[20px]">Student Name</h1>
-        <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-full  pl-[20px]">{first_name} {last_name}</h1>
+        <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%] pl-[20px]">Student Name</h1>
+        <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%]  pl-[20px]">{first_name} {last_name}</h1>
 
     </div>
 
     <div className="border-2 border-black md:w-[500px] lg:w-[1000px] mx-auto flex">
 
-<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[500px] pl-[20px]">Registration no</h1>
-<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-full  pl-[20px]">{registration}</h1>
+<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%] pl-[20px]">Registration</h1>
+<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%]  pl-[20px]">{registration}</h1>
 
 </div>
 
@@ -205,20 +191,20 @@ console.log(courseArray);
 
 <div className="border-2 border-black md:w-[500px] lg:w-[1000px] mx-auto flex">
 
-<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[500px] pl-[20px]">Roll no</h1>
-<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-full  pl-[20px]">{roll}</h1>
+<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%] pl-[20px]">Roll no</h1>
+<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%]  pl-[20px]">{roll}</h1>
 
 </div>
 
 
 {
     course_wise ? <div className="border-2 border-black md:w-[500px] lg:w-[1000px] mx-auto flex">
-    <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[500px] pl-[20px]">GPA</h1>
-    <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-full  pl-[20px]">{GPA}</h1>
+    <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%] pl-[20px]">GPA</h1>
+    <h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%]  pl-[20px]">{GPA}</h1>
     
     </div> :  semester_wise ? <div className="border-2 border-black md:w-[500px] lg:w-[1000px] mx-auto flex">
-<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[500px] pl-[20px]">CGPA</h1>
-<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-full  pl-[20px]">{CGPA}</h1>
+<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%] pl-[20px]">CGPA</h1>
+<h1 className="text-[25px] font-semibold border-r-4 border-r-black w-[50%]  pl-[20px]">{CGPA}</h1>
 
 </div> : ""
 }

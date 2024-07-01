@@ -17,6 +17,7 @@ import TeacherCalendar from './Components/TeacherCalendar/TeacherCalendar';
 import StudentSemester from './Components/StudentSemester/StudentSemester';
 import GPA from './Components/GPA/GPA';
 import TeacherSemester from './Components/Teacher Semester/TeacherSemester';
+import Privet from './Components/Privet/Privet';
 
 const router = createBrowserRouter([
   {
@@ -32,21 +33,21 @@ const router = createBrowserRouter([
 // For student dashboard 
     {
       path: "/dashboard",
-      element: <DashBoard></DashBoard>,
+      element:<DashBoard></DashBoard>,
       children: [
         {
           path: '/dashboard',
-          element: <DashboardPage></DashboardPage>
+          element: <Privet><DashboardPage></DashboardPage></Privet>
         },
 
         {
           path: "/dashboard/scalendar",
-          element : <StudentCalendar></StudentCalendar>
+          element : <Privet><StudentCalendar></StudentCalendar></Privet>
         },
 
         {
           path : "/dashboard/semester/:id",
-          element : <StudentSemester></StudentSemester>
+          element : <Privet><StudentSemester></StudentSemester></Privet>
         },
 
         {
@@ -60,23 +61,23 @@ const router = createBrowserRouter([
 
     {
       path : "/teacher",
-      element : <TeacherDashboard></TeacherDashboard>,
+      element : <Privet><TeacherDashboard></TeacherDashboard></Privet>,
       children : [
         {
           path : "/teacher",
-          element : <TeacherHome></TeacherHome>
+          element : <Privet><TeacherHome></TeacherHome></Privet>
         },
 
 
         {
           path : "/teacher/tcalendar",
-          element : <TeacherCalendar></TeacherCalendar>
+          element : <Privet><TeacherCalendar></TeacherCalendar></Privet>
         },
 
 
         {
           path : "/teacher/semester/:_id",
-          element : <TeacherSemester></TeacherSemester>
+          element : <Privet><TeacherSemester></TeacherSemester></Privet>
         }
       ]
     },

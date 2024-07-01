@@ -113,7 +113,7 @@ useEffect( () => {
 
 {/* semester logic */}
                     {
-                        isSemester === true ? <div>
+                        isSemester === true && semesterInfo.length > 0 ? <div>
 
                             {
                                 semesterInfo.map(item => (<Link to={`/dashboard/semester/${item.id}`}>

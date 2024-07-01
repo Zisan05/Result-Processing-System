@@ -75,7 +75,7 @@ useEffect( () => {
            <div className="flex flex-col md:flex-row gap-[10px]">
          
          {/* dashboard part */}
-           <div className="bg-slate-800 text-white w-full md:w-[300px] pb-[50px] h-[800px] overflow-y-auto">
+           <div className="bg-slate-800 text-white w-full md:w-[300px] pb-[50px] h-[700px] overflow-y-auto">
   
            <h1 className="text-[20px] pl-[40px] mt-[20px]  opacity-40">MAIN CATEGORY</h1>
 
@@ -123,28 +123,8 @@ useEffect( () => {
                     }
 
 
-                    <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <BiTask  className="text-[35px]"></BiTask>
-                    <h1 className="text-[25px]">Examination</h1>
 
-                    <IoIosArrowForward className="text-[25px] ml-[0px]"></IoIosArrowForward>
-                    </div>
-
-
-                    <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <PiStudentFill  className="text-[35px]"></PiStudentFill >
-                    <h1 className="text-[25px]">Student</h1>
-
-                    <IoIosArrowForward className="text-[25px] ml-[50px]"></IoIosArrowForward>
-                    </div>
-
-
-                    <div  className="flex items-center gap-[20px] pl-[20px] mt-[20px] py-[8px] focus:bg-indigo-600" tabIndex="1">
-                    <PiStudentFill  className="text-[35px]"></PiStudentFill >
-                    <h1 className="text-[25px]">Teacher</h1>
-
-                    <IoIosArrowForward className="text-[25px] ml-[50px]"></IoIosArrowForward>
-                    </div>
+                
 
                  
                   <Link to={"/teacher/tcalendar"}>

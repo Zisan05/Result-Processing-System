@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { PiExamFill } from "react-icons/pi";
 import { CiMenuKebab } from "react-icons/ci";
 import Swal from "sweetalert2";
+import { IoIosArrowDown } from "react-icons/io";
 
 const TeacherSemester = () => {
 
@@ -69,7 +70,9 @@ useEffect( () => {
 
 
 
-const [answerData ,setAnswerData] = useState([])
+const [answerData ,setAnswerData] = useState([]);
+
+const [empty , setEmpty] = useState ("")
 
  
 const handleAnswerSheet = (exam_name) => {
@@ -108,9 +111,19 @@ const handleAnswerSheet = (exam_name) => {
     .then(res => res.json())
     .then(data => {
     
-   console.log(data);
+      console.log(data);
 
-   setAnswerData(data);
+   if(data.detail === "Not found."){
+
+    setEmpty("empty")
+
+   } 
+
+   else {
+    
+    setEmpty("data")
+    setAnswerData(data);
+   }
   
       
     })
@@ -120,11 +133,16 @@ const handleAnswerSheet = (exam_name) => {
 
 }
 
+
+
+
 // Mark giving method
 
 const [examination_id, setExamination_id] = useState('')
 
 const [student_registration , setStudent_registration ] = useState('')
+
+const [msg , setMsg] = useState('')
 
 
 const handleMark = e => {
@@ -169,12 +187,7 @@ const handleMark = e => {
    
  console.log(data);
 
- Swal.fire({
-  title: "Successfull",
-  text: "You successully give the mark",
-  icon: "success",
-  
-});
+ setMsg("You successfully add mark")
   
 e.target.reset();
 
@@ -188,6 +201,12 @@ e.target.reset();
 }
 
 // Create Exam 
+
+const [seeExamName , setSeeExamName] = useState('');
+
+const [isExamName , setIsExamName] = useState(false);
+
+const [dialog , setDialog] = useState('')
 
 const handleCreateExam = e => {
 
@@ -235,14 +254,14 @@ const handleCreateExam = e => {
  
 console.log(data);
 
-Swal.fire({
-title: "Successfull",
-text: "You successully give the mark",
-icon: "success",
+if(data === "unsucess"){
+  setDialog("You Successfully create a exam")
+}
 
-});
 
 e.target.reset();
+
+
 
  
 })
@@ -260,7 +279,7 @@ e.target.reset();
 
 
     return (
-        <div className="md:w-[480px] lg:w-[1370px]">
+        <div className="md:w-[480px] lg:w-[1370px] h-[700px] overflow-y-auto">
 
           {/* create exam  */}
            
@@ -277,22 +296,59 @@ e.target.reset();
     <h3 className="font-bold text-[25px] text-center">Create New Exam</h3>
     <form  onSubmit={handleCreateExam} className="pl-[30px]"> 
 
-        <h1 className="text-[20px] mt-[20px] font-semibold">Exam Name</h1>
-        <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px]" name="name" placeholder="Exam name" type="text" />
+    <h1 className="text-[20px] mt-[10px] font-semibold">Exam Name</h1>
 
-        <h1 className="text-[20px] mt-[20px] font-semibold">Course</h1>
+        <div className="w-[300px] md:w-[400px] bg-slate-200 py-[3px]  mt-[10px] flex items-center justify-between px-[10px] border-2 border-black">
+                    <h1 className="w-full text-[20px] font-bold text-center ml-[20px]">{seeExamName}</h1>
+
+                     <IoIosArrowDown onClick={() => setIsExamName (!isExamName)}  className="text-[25px]"></IoIosArrowDown>
+                 </div>
+
+                 {
+                  isExamName === true ? <div>
+                    <span onClick={() => setIsExamName(false)}> <div onClick={() => setSeeExamName("assignment")} className="w-[300px] md:w-[400px] bg-slate-200 py-[3px]   flex items-center justify-between px-[10px] hover:bgpurple">
+                  <h1 className="  text-[20px] font-bold w-full text-center ">assignment</h1>
+                    </div></span> 
+
+
+                    <span onClick={() => setIsExamName(false)}> <div onClick={() => setSeeExamName("class-test")} className="w-[300px] md:w-[400px] bg-slate-200 py-[3px]   flex items-center justify-between px-[10px] hover:bgpurple">
+                  <h1 className="  text-[20px] font-bold w-full text-center ">class-test</h1>
+                    </div></span> 
+
+
+                    <span onClick={() => setIsExamName(false)}> <div onClick={() => setSeeExamName("midterm")} className="w-[300px] md:w-[400px] bg-slate-200 py-[3px]   flex items-center justify-between px-[10px] hover:bgpurple">
+                  <h1 className="  text-[20px] font-bold w-full text-center ">midterm</h1>
+                    </div></span> 
+
+
+                    <span onClick={() => setIsExamName(false)}> <div onClick={() => setSeeExamName("final")} className="w-[300px] md:w-[400px] bg-slate-200 py-[3px]   flex items-center justify-between px-[10px] hover:bgpurple">
+                  <h1 className="  text-[20px] font-bold w-full text-center ">final</h1>
+                    </div></span> 
+                  </div>
+                    
+                    
+                    
+                    
+                    : ""
+                 }
+
+        <h1 className="text-[20px] mt-[10px] font-semibold">Course</h1>
         <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px]" name="course" placeholder="course" type="text" />
 
         <h1 className="text-[20px] mt-[20px] font-semibold">Deadline</h1>
         <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px]" name="deadline" placeholder="Deadline" type="text" />
 
-        <h1 className="text-[20px] mt-[20px] font-semibold">Semester</h1>
-        <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px]" value={_id} name="semester" placeholder="Semester no" type="text" />
+        <h1 className="text-[20px] mt-[20px] font-semibold hidden">Semester</h1>
+        <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px] hidden" value={_id} name="semester" placeholder="Semester no" type="text" />
 
         <h1 className="text-[20px] mt-[20px] font-semibold">Question</h1>
         <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px]" name="question" placeholder="Question PDF URL" type="text" />
 
-        <button className="bg-indigo-500 text-white mr-[5px] mt-[10px]  px-[10px] py-[5px] font-semibold rounded-[5px]">Submit</button>
+        <h1 className="text-[20px] text-green-500 font-semibold text-center mt-[10px]">{dialog}.</h1>
+
+
+       <button className="bg-indigo-500 text-white mr-[5px] mt-[10px]  px-[10px] py-[5px] font-semibold rounded-[5px]">Submit</button>
+   
       </form>
   </div>
 </dialog>
@@ -327,23 +383,31 @@ e.target.reset();
             {/* Answer Card */}
 
             {
-                answerData.map(data => ( <div  className=" mt-[30px] flex items-center gap-[10px] bg-[#ebe4e4a6] md:w-[480px] lg:w-[1100px] lg:ml-[100px] py-[20px] mb-[20px]">
-                <PiExamFill className="md:text-[30px] lg:text-[50px] ml-[20px]"></PiExamFill>
-               
-                 <h1 className="text-[14px] md:text-[16px] lg:text-[25px] font-semibold"> Examination : <span className="purple">{data.examination_name}</span>  ;</h1>
-                 <h1 className="text-[14px] md:text-[16px] lg:text-[25px] font-semibold">Resgistration  : <span className="purple">{data.student_registration}</span></h1>
- 
-                <div className="flex gap-[10px]">
-                    <a href={data.answer}><button className="bg-indigo-500 text-white  ml-0 md:ml-0 lg:ml-[40px]  px-[10px] py-[5px] hover:bg-orange-400 font-semibold text-[10px] md:text-[10px] lg:text-[18px]">View Answer</button></a>
-
-                     
-
-                  <span onClick={() => setStudent_registration(data.student_registration)}><span onClick={() => setExamination_id(data.examination_id)}><button onClick={()=>document.getElementById('my_modal_3').showModal()} className="bg-indigo-500 text-white mr-[5px] ml-0 md:ml-0 lg:ml-[40px]  px-[10px] py-[5px] hover:bg-lime-400 font-semibold">Mark</button></span></span>
-
-                </div>
-                
-             </div>))
+              empty === "data"  ? <div>
+              {
+                   answerData.map(data => ( <div  className=" mt-[30px] flex items-center gap-[10px] bg-[#ebe4e4a6] md:w-[480px] lg:w-[1100px] lg:ml-[100px] py-[20px] mb-[20px]">
+                   <PiExamFill className="md:text-[30px] lg:text-[50px] ml-[20px]"></PiExamFill>
+                  
+                    <h1 className="text-[14px] md:text-[16px] lg:text-[25px] font-semibold"> Examination : <span className="purple">{data.examination_name}</span>  ;</h1>
+                    <h1 className="text-[14px] md:text-[16px] lg:text-[25px] font-semibold">Resgistration  : <span className="purple">{data.student_registration}</span></h1>
+    
+                   <div className="flex gap-[10px]">
+                       <a href={data.answer}><button className="bg-indigo-500 text-white  ml-0 md:ml-0 lg:ml-[40px]  px-[10px] py-[5px] hover:bg-orange-400 font-semibold text-[10px] md:text-[10px] lg:text-[18px]">View Answer</button></a>
+   
+                        
+   
+                     <span onClick={() => setStudent_registration(data.student_registration)}><span onClick={() => setExamination_id(data.examination_id)}><button onClick={()=>document.getElementById('my_modal_3').showModal()} className="bg-indigo-500 text-white mr-[5px] ml-0 md:ml-0 lg:ml-[40px]  px-[10px] py-[5px] hover:bg-lime-400 font-semibold">Mark</button></span></span>
+   
+                   </div>
+                   
+                </div>))
+               }
+              </div> : empty === "empty" ?  <div>
+                <h1 className="text-[35px] font-bold text-center purple mt-[40px]">Empty Answer Data</h1>
+              </div> : ""
             }
+
+           
 
 <dialog id="my_modal_3" className="modal">
   <div className="modal-box">
@@ -355,6 +419,8 @@ e.target.reset();
     <form  onSubmit={handleMark} className="pl-[30px]"> 
         <h1 className="text-[20px] mt-[20px] font-semibold">Mark</h1>
         <input className="bg-slate-200 w-full md:w-[400px] mt-[10px] py-[5px] pl-[10px]" name="mark" placeholder="Give The mark" type="text" />
+
+        <h1 className="text-[20px] text-green-500 font-semibold text-center mt-[10px]">{msg}.</h1>
 
         <button className="bg-indigo-500 text-white mr-[5px] mt-[10px]  px-[10px] py-[5px] font-semibold rounded-[5px]">Submit</button>
       </form>

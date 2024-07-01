@@ -19,7 +19,7 @@ const DashboardPage = () => {
                 <div>
                 <h1 className="text-[30px] text-yellow-400 font-bold  md:text-right">Answer :</h1>
 
-<p className="text-[15px] text-white md:w-[150px] lg:w-[400px]  md:text-right">Welcome to the grading component of Result Processing System. Here, teacher can assign grade points for each course. Teachers can navigate to the left sidebar and select the specific answer paper to input grade points for each course.</p>
+<p className="text-[15px] text-white md:w-[150px] lg:w-[400px]  md:text-right">After completing the examination provided by your teachers, prepare your answer paper by typing your answers in a document and saving it as either a DOC or PDF file. Next, upload this file to a cloud storage service such as Google Drive. Once uploaded, copy the shareable link to your file and paste this URL into the answer submission option provided.</p>
                 </div>
             </div>
             
@@ -29,7 +29,7 @@ const DashboardPage = () => {
                 <div>
                 <h1 className="text-[30px] text-yellow-400 font-bold">Semester :</h1>
 
-<p className="text-[15px] text-white md:w-[200px] lg:w-[400px]">Welcome to the grading component of Result Processing System. Teachers can select a specific semester to access various options: marking the semester as complete, creating new exams (such as assignments, class tests, midterms, and final exams), and generating GPA for the semester.</p>
+<p className="text-[15px] text-white md:w-[200px] lg:w-[400px]">Welcome to the Result Processing System. Here, you can view your semester details and take advantage of various features, including taking examinations and submitting your answer papers.</p>
                 </div>
             </div>
 

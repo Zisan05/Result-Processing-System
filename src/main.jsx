@@ -42,7 +42,7 @@ const router = createBrowserRouter([
 
         {
           path: "/dashboard/scalendar",
-          element : <Privet><StudentCalendar></StudentCalendar></Privet>
+          element :<StudentCalendar></StudentCalendar>
         },
 
         {
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
 
         {
           path : "/teacher/tcalendar",
-          element : <Privet><TeacherCalendar></TeacherCalendar></Privet>
+          element :<TeacherCalendar></TeacherCalendar>
         },
 
 

@@ -9,7 +9,7 @@ const NavBar = () => {
             <BiSolidBookOpen className="purple text-[30px] md:text-[45px]"></BiSolidBookOpen>
             </div>
             <Link to={"/dashboard/gpa"}>
-            <button className="text-white bgpurple text-[20px] px-[10px] md:px-[30px] py-[3px] rounded-[30px] md:mr-[40px] font-semibold ">Result</button>
+            <button className="text-white bgpurple text-[20px] px-[10px] md:px-[30px] py-[3px] rounded-[30px] md:mr-[40px] font-semibold hover:bg-blue-400">Result</button>
             </Link>
         </div>
     );

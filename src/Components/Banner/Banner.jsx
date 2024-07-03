@@ -147,7 +147,7 @@ e.target.reset();
 
     return (
         <div className="background md:h-[600px] mt-[20px]">
-            <h1 className="text-[35px] text-white bg-gradient-to-r from-white to-[#6164FF] text-transparent bg-clip-text font-semibold text-center pt-[50px]">Result Processing System </h1>
+            <h1 className="text-[35px] text-purple bg-gradient-to-r from-white to-[#6164FF] text-transparent bg-clip-text font-semibold text-center pt-[50px]">Result Processing System </h1>
 
             <div className="flex flex-col md:flex-row mt-[80px] gap-[10px] md:gap-[20px] lg:gap-[50px]  justify-center pb-[30px]  ">
                 {/* for Student */}

@@ -3,7 +3,7 @@
 const GradeSystem = () => {
     return (
         <div className="bg-black mt-[30px] pt-[20px] pb-[40px]">
-            <h1 className="text-[30px] text-center font-bold text-white bg-gradient-to-r from-white to-[#6164FF] text-transparent bg-clip-text">How to Calculate Grade point</h1>
+            <h1 className="text-[30px] text-center font-bold text-purple bg-gradient-to-r from-white to-[#6164FF] text-transparent bg-clip-text">How to Calculate Grade point</h1>
 
             <div className="overflow-x-auto mt-[20px]">
   <table className="table">
